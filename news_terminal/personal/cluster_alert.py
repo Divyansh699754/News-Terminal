@@ -18,7 +18,7 @@ from news_terminal.utils.logger import get_logger
 log = get_logger("personal.cluster_alert")
 
 ALERT_FILE = DATA_DIR / "cluster_alerts.json"
-CLUSTER_THRESHOLD = 3     # signals needed to trigger
+CLUSTER_THRESHOLD = 10    # signals needed to trigger (3 was too sensitive)
 WINDOW_HOURS = 48
 
 
@@ -64,8 +64,10 @@ def detect_cluster_alerts(articles: list[dict]) -> list[dict]:
     for article in personal:
         matched_kws = set(article.get("matched_keywords", []))
         for sector in sectors:
-            sector_words = {w.lower() for w in sector.split() if len(w) > 2}
-            if matched_kws & sector_words:
+            # Require at least 2 keyword matches to avoid noise from short common words
+            sector_words = {w.lower() for w in sector.split() if len(w) > 3}
+            overlap = matched_kws & sector_words
+            if len(overlap) >= 2:
                 if sector not in sector_hits:
                     sector_hits[sector] = []
                 sector_hits[sector].append({

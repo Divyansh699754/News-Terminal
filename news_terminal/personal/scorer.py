@@ -19,27 +19,36 @@ from news_terminal.utils.logger import get_logger
 log = get_logger("personal.scorer")
 
 
+    # Common English words that match everything — exclude from keyword matching
+_STOPWORDS = {
+    "the", "and", "for", "that", "this", "with", "from", "will", "have", "been",
+    "their", "about", "into", "than", "them", "most", "more", "over", "also",
+    "within", "between", "through", "become", "across", "before", "after",
+    "news", "new", "top", "latest", "ahead", "stay", "find", "build",
+}
+
+
 def _build_keyword_set(profile: dict) -> set[str]:
-    """Extract all keywords from profile for fast local matching."""
+    """Extract meaningful keywords from profile. Excludes stopwords and short words."""
     words = set()
 
     for sector in profile.get("sectors", []):
-        words.update(w.lower() for w in sector.split() if len(w) > 2)
+        words.update(w.lower() for w in sector.split() if len(w) > 3 and w.lower() not in _STOPWORDS)
 
     for goal in profile.get("goals", []):
-        words.update(w.lower() for w in goal.split() if len(w) > 3)
+        words.update(w.lower() for w in goal.split() if len(w) > 4 and w.lower() not in _STOPWORDS)
 
     for threat in profile.get("threats", []):
-        words.update(w.lower() for w in threat.split() if len(w) > 3)
+        words.update(w.lower() for w in threat.split() if len(w) > 4 and w.lower() not in _STOPWORDS)
 
     for project in profile.get("building", []):
         for field in ("name", "description", "sector"):
             val = project.get(field, "")
-            words.update(w.lower() for w in val.split() if len(w) > 2)
+            words.update(w.lower() for w in val.split() if len(w) > 3 and w.lower() not in _STOPWORDS)
 
     for thesis in profile.get("theses", []):
         if thesis.get("status") == "active":
-            words.update(kw.lower() for kw in thesis.get("keywords", []))
+            words.update(kw.lower() for kw in thesis.get("keywords", []) if len(kw) > 3)
 
     return words
 
@@ -69,11 +78,19 @@ class PersonalScorer:
         matched = [kw for kw in self.keywords if kw in text]
         score = min(len(matched) * 2, 10)
 
-        # Check thesis matches
+        # Check thesis matches — keywords can be multi-word phrases
         matched_theses = []
         for thesis_id, thesis_kws in self.thesis_keywords.items():
-            hits = sum(1 for kw in thesis_kws if kw in text)
-            if hits >= 2:  # Need at least 2 keyword hits to count
+            hits = 0
+            for kw in thesis_kws:
+                # Multi-word: check exact phrase. Single-word: check word presence.
+                if " " in kw:
+                    if kw in text:
+                        hits += 1
+                else:
+                    if kw in text.split() or kw in text:
+                        hits += 1
+            if hits >= 1:  # At least 1 keyword hit
                 matched_theses.append(thesis_id)
                 score = min(score + 3, 10)
 

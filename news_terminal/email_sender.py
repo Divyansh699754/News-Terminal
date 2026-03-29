@@ -92,16 +92,28 @@ def main():
         return
 
     with open(input_path, encoding="utf-8") as f:
-        articles = json.load(f)
+        data = json.load(f)
 
-    top_n = settings.get("delivery", {}).get("email", {}).get("top_n_in_email", 5)
+    # Support both old format (list) and new format (dict with brief)
+    if isinstance(data, list):
+        articles = data
+        brief = None
+    else:
+        articles = data.get("articles", data)
+        brief = data.get("brief")
+
     to = settings["user"]["email"]
 
     critical = sum(1 for a in articles if a.get("priority") == "CRITICAL")
     high = sum(1 for a in articles if a.get("priority") == "HIGH")
 
-    subject = f"News Terminal {args.slot.title()} — {today} — {critical} Critical, {high} High"
-    html = build_email_html(articles[:top_n], args.slot)
+    # Include brief headline in subject if available
+    brief_tag = ""
+    if brief and brief.get("headline"):
+        brief_tag = f" | {brief['headline'][:50]}"
+
+    subject = f"News Terminal {args.slot.title()} — {today} — {critical} Critical, {high} High{brief_tag}"
+    html = build_email_html(articles, args.slot, brief=brief)
 
     send_email(to, subject, html)
 

@@ -47,8 +47,40 @@ def _select_diverse_top(articles: list[dict], n: int = 5) -> list[dict]:
     return selected
 
 
-def build_email_html(articles: list[dict], slot: str, site_url: str = "") -> str:
-    """Build HTML email digest with top articles, category-diverse."""
+def _build_brief_rows(brief: dict) -> list[str]:
+    """Build HTML rows for the decision brief section in email."""
+    if not brief:
+        return []
+
+    rows = []
+    threat_color = {"green": "#16a34a", "yellow": "#ca8a04", "red": "#dc2626"}.get(brief.get("threat_level", "green"), "#6b7280")
+
+    rows.append(f"""
+    <tr>
+      <td style="padding:16px; background:#f8fafc; border-bottom:2px solid #e2e8f0;">
+        <span style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#64748b;">YOUR BRIEF</span>
+        <span style="display:inline-block; padding:2px 8px; border-radius:10px; background:{threat_color}; color:white; font-size:10px; font-weight:700; margin-left:8px;">{brief.get('threat_level', 'green').upper()}</span>
+        <br>
+        <div style="font-size:18px; font-weight:700; color:#0f172a; margin-top:6px; line-height:1.3;">{brief.get('headline', '')}</div>
+      </td>
+    </tr>""")
+
+    for i, thing in enumerate(brief.get("three_things", [])[:3], 1):
+        rows.append(f"""
+    <tr>
+      <td style="padding:12px 16px; border-bottom:1px solid #e5e7eb;">
+        <span style="display:inline-block; width:24px; height:24px; background:#0f172a; color:white; border-radius:8px; text-align:center; line-height:24px; font-size:12px; font-weight:700;">{i}</span>
+        <span style="font-size:14px; font-weight:600; color:#0f172a; margin-left:8px;">{thing.get('signal', '')}</span>
+        <p style="font-size:13px; color:#475569; margin:4px 0 4px 32px; line-height:1.4;">{thing.get('why_it_matters_to_you', '')}</p>
+        <p style="font-size:12px; color:#16a34a; margin:0 0 0 32px; font-weight:600;">Pivot: {thing.get('pivot', '')}</p>
+      </td>
+    </tr>""")
+
+    return rows
+
+
+def build_email_html(articles: list[dict], slot: str, site_url: str = "", brief: dict = None) -> str:
+    """Build HTML email digest with decision brief + top articles."""
     now = datetime.now(timezone.utc)
     date_str = now.strftime("%B %d, %Y")
 
@@ -97,6 +129,7 @@ def build_email_html(articles: list[dict], slot: str, site_url: str = "") -> str
         </p>
       </td>
     </tr>
+    {"".join(_build_brief_rows(brief)) if brief else ""}
     {rows}
     <tr>
       <td style="padding:20px; text-align:center; background:#f9fafb;">

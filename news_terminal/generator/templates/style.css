@@ -535,6 +535,16 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+.me-gen-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
 
 .me-headline {
   font-size: 22px;

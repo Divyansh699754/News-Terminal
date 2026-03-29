@@ -155,7 +155,9 @@
       var b = briefData;
       var threatColor = {green: "#16a34a", yellow: "#ca8a04", red: "#dc2626"}[b.threat_level] || "#6b7280";
       html += '<div class="me-brief">';
+      var genLabel = b.generated_by === "local" ? "LOCAL ANALYSIS" : "AI BRIEF";
       html += '<div class="me-brief-header"><span class="me-label">DECISION BRIEF</span>';
+      html += '<span class="me-gen-badge">' + genLabel + '</span>';
       html += '<span class="me-threat" style="background:' + threatColor + '">' + (b.threat_level || "green").toUpperCase() + '</span></div>';
       html += '<h2 class="me-headline">' + esc(b.headline || "No brief generated yet") + '</h2>';
 

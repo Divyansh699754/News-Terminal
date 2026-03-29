@@ -177,6 +177,7 @@ def main():
     try:
         from news_terminal.personal.scorer import PersonalScorer
         from news_terminal.personal.brief import generate_decision_brief
+        from news_terminal.personal.local_brief import generate_local_brief
         from news_terminal.personal.tracker import PredictionTracker
 
         log.info("Pass 3: Personal scoring against profile")
@@ -187,11 +188,18 @@ def main():
         tracker = PredictionTracker()
         tracker.process_articles(relevant)
 
-        # Generate decision brief (1 Gemini Flash call) for the ME tab
+        # Generate decision brief — try Gemini first, fall back to local
         personal_top = [a for a in relevant if a.get("personal_score", 0) >= 4]
         if personal_top:
             log.info("Generating decision brief from %d personal-relevance articles", len(personal_top))
-            brief = generate_decision_brief(relevant)
+            try:
+                brief = generate_decision_brief(relevant)
+            except Exception as e:
+                log.warning("Gemini brief failed: %s — using local brief", e)
+            if not brief:
+                log.info("Using local brief generator (no Gemini needed)")
+                # cluster_alerts is defined later, so generate local brief after alerts
+                _generate_local = True
 
     except ImportError:
         log.info("Personal module not available — skipping")
@@ -205,6 +213,14 @@ def main():
         cluster_alerts = detect_cluster_alerts(relevant)
     except Exception as e:
         log.error("Cluster alert detection failed: %s", e)
+
+    # Generate local brief if Gemini brief was unavailable
+    if not brief:
+        try:
+            from news_terminal.personal.local_brief import generate_local_brief
+            brief = generate_local_brief(relevant, cluster_alerts)
+        except Exception as e:
+            log.error("Local brief generation failed: %s", e)
 
     # Save
     output = {
