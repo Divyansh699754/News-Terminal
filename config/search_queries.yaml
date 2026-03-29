@@ -1,0 +1,42 @@
+# Gemini + Google Search grounding queries.
+# 3 queries per topic, each becomes one API call.
+#
+# v2 queries — refined from v1 based on team review:
+# - Stripped temporal filler ("latest", "this week", "new")
+# - Split overloaded multi-topic queries
+# - Added emerging threats coverage (cyber/space/nuclear)
+# - Broadened narrow queries (e.g., added Indian Army, ISRO)
+#
+# Iterate based on output quality. Queries returning too-broad
+# or empty results should be narrowed/replaced.
+
+queries:
+  india_defense:
+    - "India defense DRDO weapons procurement test commissioning"
+    - "Indian military Army Navy Air Force exercise deployment"
+    - "India border security strategic defense partnerships"
+
+  global_defense:
+    - "military conflict weapons systems missile deployment"
+    - "NATO defense operations spending procurement"
+    - "drone warfare hypersonic weapons stealth aircraft"
+
+  ai_ml:
+    - "AI research breakthrough model training inference"
+    - "open source language model release benchmark"
+    - "AI regulation government policy executive order"
+
+  us_tech:
+    - "Silicon Valley startup funding acquisition"
+    - "tech industry venture capital IPO valuation"
+    - "tech regulation antitrust big tech policy"
+
+  india_policy:
+    - "India economy RBI monetary policy interest rate"
+    - "India government economic reform budget policy"
+    - "India manufacturing FDI trade investment"
+
+  emerging_threats:
+    - "cyber attack infrastructure nation state APT"
+    - "space military satellite anti-satellite ASAT"
+    - "nuclear proliferation treaty missile warhead"

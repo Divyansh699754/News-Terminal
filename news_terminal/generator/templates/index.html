@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ theme }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>News Terminal — {{ slot | title }} Briefing</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <meta name="description" content="Personal Intelligence Briefing System — {{ date }}">
+</head>
+<body>
+  <!-- Squircle (quintic superellipse) clip-path definitions.
+       Unlike border-radius (circular arcs with visible "pinch" at tangent transitions),
+       these use continuous-curvature Bézier curves matching Apple's iOS corner shape.
+       Each corner is a compound curve: ease-in → turn → ease-out. -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <!-- Large squircle for cards (r≈6%, iOS-style smooth corners) -->
+      <clipPath id="sq" clipPathUnits="objectBoundingBox">
+        <path d="M 0.092,0 L 0.908,0
+          C 0.935,0 0.948,0 0.961,0
+          C 0.986,0 1,0.014 1,0.039
+          C 1,0.052 1,0.065 1,0.092
+          L 1,0.908
+          C 1,0.935 1,0.948 1,0.961
+          C 1,0.986 0.986,1 0.961,1
+          C 0.948,1 0.935,1 0.908,1
+          L 0.092,1
+          C 0.065,1 0.052,1 0.039,1
+          C 0.014,1 0,0.986 0,0.961
+          C 0,0.948 0,0.935 0,0.908
+          L 0,0.092
+          C 0,0.065 0,0.052 0,0.039
+          C 0,0.014 0.014,0 0.039,0
+          C 0.052,0 0.065,0 0.092,0 Z"/>
+      </clipPath>
+      <!-- Small squircle for badges/pills (tighter radius) -->
+      <clipPath id="sq-sm" clipPathUnits="objectBoundingBox">
+        <path d="M 0.15,0 L 0.85,0
+          C 0.9,0 0.94,0 0.96,0.01
+          C 0.99,0.04 1,0.08 1,0.15
+          L 1,0.85
+          C 1,0.92 0.99,0.96 0.96,0.99
+          C 0.94,1 0.9,1 0.85,1
+          L 0.15,1
+          C 0.08,1 0.04,0.99 0.01,0.96
+          C 0,0.92 0,0.88 0,0.85
+          L 0,0.15
+          C 0,0.08 0.01,0.04 0.04,0.01
+          C 0.08,0 0.12,0 0.15,0 Z"/>
+      </clipPath>
+    </defs>
+  </svg>
+
+  <header class="header">
+    <div class="header-content">
+      <div class="header-left">
+        <h1 class="logo">News Terminal</h1>
+        <span class="slot-badge">{{ slot | title }}</span>
+        <span class="date-badge">{{ date }}</span>
+        <span class="count-badge">{{ article_count }} articles</span>
+        <span class="scan-badge">Google Search + {{ sources_scanned if sources_scanned > 0 else "26" }} feeds</span>
+      </div>
+      <div class="header-right">
+        <button id="theme-toggle" class="btn-icon" title="Toggle theme">
+          <span class="icon-sun">&#9788;</span>
+          <span class="icon-moon">&#9790;</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-category="me">
+      ME
+      <span class="tab-count" data-count-for="me">0</span>
+    </button>
+    {% for tab in tabs %}
+    <button class="tab" data-category="{{ tab.id }}">
+      {{ tab.name }}
+      <span class="tab-count" data-count-for="{{ tab.id }}">0</span>
+    </button>
+    {% endfor %}
+  </nav>
+
+  <main class="main">
+    <div class="toolbar">
+      <input type="text" id="search" class="search-input" placeholder="Search articles, topics, sources...">
+      <select id="priority-filter" class="select-filter">
+        <option value="all">All Priorities</option>
+        <option value="CRITICAL">Critical</option>
+        <option value="HIGH">High</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="LOW">Low</option>
+      </select>
+    </div>
+
+    <div id="hero-section" class="hero-section"></div>
+
+    <div id="articles" class="article-grid">
+      <div class="loading">Loading briefing data...</div>
+    </div>
+
+    <div id="empty-state" class="empty-state" style="display:none;">
+      No articles match your filters.
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p><strong>News Terminal</strong> &mdash; Personal Intelligence Briefing System</p>
+    <p class="footer-meta">Source bias ratings from MBFC database. Framing analysis by Gemini (AI-generated, treat as suggestion).</p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

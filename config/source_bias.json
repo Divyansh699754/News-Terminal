@@ -1,0 +1,20 @@
+{
+  "DRDO News": {"rating": "center", "source": "editorial", "factual": "mixed"},
+  "Indian Defence Research Wing": {"rating": "center-right", "source": "editorial", "factual": "mixed"},
+  "The Print - Defence": {"rating": "center", "source": "mbfc", "factual": "high"},
+  "Defense One": {"rating": "center", "source": "mbfc", "factual": "high"},
+  "Breaking Defense": {"rating": "center", "source": "editorial", "factual": "high"},
+  "The War Zone": {"rating": "center", "source": "editorial", "factual": "high"},
+  "Naval News": {"rating": "center", "source": "editorial", "factual": "high"},
+  "Janes": {"rating": "center", "source": "editorial", "factual": "high"},
+  "arXiv CS.AI": {"rating": "neutral", "source": "neutral", "factual": "high"},
+  "MIT Tech Review - AI": {"rating": "center-left", "source": "mbfc", "factual": "high"},
+  "The Verge - AI": {"rating": "center-left", "source": "mbfc", "factual": "mixed"},
+  "TechCrunch": {"rating": "center-left", "source": "mbfc", "factual": "high"},
+  "Hacker News (Top)": {"rating": "center", "source": "neutral", "factual": "mixed"},
+  "Livemint": {"rating": "center-right", "source": "editorial", "factual": "high"},
+  "Economic Times": {"rating": "center-right", "source": "editorial", "factual": "high"},
+  "The Guardian": {"rating": "center-left", "source": "mbfc", "factual": "high"},
+  "r/CredibleDefense": {"rating": "center", "source": "neutral", "factual": "mixed"},
+  "r/IndianDefense": {"rating": "center", "source": "neutral", "factual": "mixed"}
+}

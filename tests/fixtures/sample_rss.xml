@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Test Defense Feed</title>
+    <link>https://example.com</link>
+    <description>Test RSS feed</description>
+    <item>
+      <title>India Tests New Hypersonic Missile System</title>
+      <link>https://example.com/article1</link>
+      <description>India successfully tested a domestically developed hypersonic missile.</description>
+      <pubDate>Thu, 27 Mar 2026 08:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>US Navy Deploys New Destroyer to Pacific</title>
+      <link>https://example.com/article2</link>
+      <description>The US Navy has deployed its latest Arleigh Burke-class destroyer.</description>
+      <pubDate>Thu, 27 Mar 2026 07:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

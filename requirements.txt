@@ -1,0 +1,22 @@
+# -- Collection --
+feedparser>=6.0
+trafilatura>=1.8
+newspaper4k>=0.9
+beautifulsoup4>=4.12
+requests>=2.31
+
+# -- Deduplication --
+datasketch>=1.6
+simhash>=2.1
+sentence-transformers>=3.0
+
+# -- Processing --
+google-genai>=1.0
+tenacity>=8.2
+
+# -- Generation --
+jinja2>=3.1
+pyyaml>=6.0
+
+# -- Utilities --
+python-dateutil>=2.9

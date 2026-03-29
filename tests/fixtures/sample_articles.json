@@ -1,0 +1,58 @@
+[
+  {
+    "id": "abc123",
+    "title": "India Tests New Hypersonic Missile System",
+    "url": "https://example.com/article1",
+    "source_name": "Defense One",
+    "source_bias_rating": "center",
+    "source_bias_source": "mbfc",
+    "category": "india_defense",
+    "published": "2026-03-27T08:00:00Z",
+    "text": "India successfully tested a domestically developed hypersonic missile capable of Mach 8+ speeds, marking a significant milestone in the country's defense modernization program. The DRDO-developed system was launched from a test facility on the eastern coast.",
+    "text_quality": "full",
+    "cluster_id": null,
+    "dedup_method": "unique"
+  },
+  {
+    "id": "def456",
+    "title": "OpenAI Announces GPT-5 with Enhanced Reasoning",
+    "url": "https://example.com/article2",
+    "source_name": "TechCrunch",
+    "source_bias_rating": "center-left",
+    "source_bias_source": "mbfc",
+    "category": "ai_ml",
+    "published": "2026-03-27T10:00:00Z",
+    "text": "OpenAI has unveiled GPT-5, its latest large language model featuring significantly improved reasoning capabilities. The model demonstrates near-human performance on complex mathematical and scientific benchmarks.",
+    "text_quality": "full",
+    "cluster_id": null,
+    "dedup_method": "unique"
+  },
+  {
+    "id": "ghi789",
+    "title": "India Tests Hypersonic Missile in Major Defense Milestone",
+    "url": "https://example.com/article3",
+    "source_name": "The Print - Defence",
+    "source_bias_rating": "center",
+    "source_bias_source": "editorial",
+    "category": "india_defense",
+    "published": "2026-03-27T09:00:00Z",
+    "text": "In a landmark achievement, India has successfully tested a new hypersonic missile system developed by DRDO. The game-changing weapon can travel at speeds exceeding Mach 8, placing India among an elite group of nations with hypersonic capabilities.",
+    "text_quality": "full",
+    "cluster_id": null,
+    "dedup_method": "unique"
+  },
+  {
+    "id": "jkl012",
+    "title": "RBI Holds Interest Rates Steady Amid Global Uncertainty",
+    "url": "https://example.com/article4",
+    "source_name": "Livemint",
+    "source_bias_rating": "center-right",
+    "source_bias_source": "editorial",
+    "category": "india_policy",
+    "published": "2026-03-27T06:00:00Z",
+    "text": "The Reserve Bank of India maintained its benchmark repo rate at 6.5% for the eighth consecutive meeting, citing concerns over global economic uncertainty and persistent food inflation.",
+    "text_quality": "excerpt",
+    "cluster_id": null,
+    "dedup_method": "unique"
+  }
+]

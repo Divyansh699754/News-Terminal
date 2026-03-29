@@ -1,0 +1,23 @@
+{
+  "pass1": {
+    "summary": "India successfully tested a domestically developed hypersonic missile capable of Mach 8+ speeds, marking a significant milestone in the country's defense modernization program.",
+    "entities": {
+      "countries": ["India"],
+      "weapons_systems": ["Hypersonic Cruise Missile"],
+      "organizations": ["DRDO"],
+      "people": []
+    },
+    "country_tags": ["IN"],
+    "relevance_score": 9,
+    "novelty": "new",
+    "impact": "critical",
+    "priority": "CRITICAL",
+    "weapon_category": "hypersonic_missile"
+  },
+  "pass2": {
+    "framing_description": "Frames the test as a 'landmark achievement' and 'game-changing' — positive government narrative without critical examination",
+    "loaded_language": ["landmark achievement", "game-changing", "elite group"],
+    "missing_context": "No mention of development timeline, cost overruns, or comparison with existing systems from other nations",
+    "emotional_intensity": "medium"
+  }
+}

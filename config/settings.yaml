@@ -1,0 +1,67 @@
+user:
+  name: "Divyansh"
+  email: "your-email@gmail.com"
+  timezone: "America/New_York"
+
+schedule:
+  morning: "06:00"
+  evening: "18:00"
+
+topics:
+  india_defense:
+    enabled: true
+    tab_name: "India Defense"
+    spotlight: true
+
+  global_defense:
+    enabled: true
+    tab_name: "Global Defense"
+    region_grouping: true
+
+  ai_ml:
+    enabled: true
+    tab_name: "AI & ML"
+
+  us_tech:
+    enabled: true
+    tab_name: "US Tech"
+
+  india_policy:
+    enabled: true
+    tab_name: "India Policy"
+
+  emerging_threats:
+    enabled: true
+    tab_name: "Cyber / Space / Nuclear"
+
+filters:
+  min_relevance_score: 4
+  max_articles_per_tab: 25
+  dedup_window_hours: 48
+
+bias_display:
+  show_source_rating: true
+  show_framing: true
+  show_loaded_language: true
+  show_missing_context: true
+
+delivery:
+  email:
+    enabled: true
+    top_n_in_email: 5
+    provider: "resend"
+  site:
+    enabled: true
+    theme: "auto"
+    archive_days: 30
+
+gemini:
+  primary_model: "gemini-2.5-flash-lite"
+  analysis_model: "gemini-2.5-flash"
+  temperature: 0.1
+  max_input_chars: 4000
+  # Free tier: 20 RPD per project per model. With 3 keys = 60 RPD.
+  # Pipeline runs 2x/day → 30 per-run budget per model.
+  # Budget per run: ~30 Flash-Lite (summaries) + ~10 Flash (bias) + ~18 Flash (search)
+  max_summarize_per_run: 30
+  max_bias_per_run: 10

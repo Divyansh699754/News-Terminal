@@ -1,0 +1,38 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environment
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Data (generated at runtime, not committed to main)
+data/raw_*.json
+data/deduped_*.json
+data/processed_*.json
+
+# Site (generated, deployed via gh-pages)
+site/data/*.json
+site/data/archive/
+site/assets/style.css
+site/assets/app.js
+
+# Local config
+config/settings.local.yaml
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db

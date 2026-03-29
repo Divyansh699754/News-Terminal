@@ -1,0 +1,69 @@
+# ── YOUR PERSONAL INTELLIGENCE PROFILE ──
+# This is who you are. Every article gets scored against this.
+# The more specific you are, the better the system filters for you.
+
+identity:
+  name: "Divyansh"
+  role: "Builder / Developer"
+  location: "United States (EST)"
+
+# What are you building right now?
+building:
+  - name: "News Terminal"
+    description: "Automated personal intelligence briefing system"
+    sector: "AI/ML tooling, news aggregation, media tech"
+    stage: "MVP — launching on GitHub, $0 budget"
+
+# What sectors/domains do you operate in or care deeply about?
+sectors:
+  - "AI/ML infrastructure and tooling"
+  - "India defense and geopolitics"
+  - "US tech startups and venture capital"
+  - "India economic policy and markets"
+  - "Cybersecurity and digital infrastructure"
+  - "Open source software"
+
+# Your goals — what you're trying to achieve in the next 6-12 months
+goals:
+  - "Launch News Terminal as a public project and grow it"
+  - "Build expertise in AI agent systems and LLM applications"
+  - "Stay ahead of geopolitical shifts that affect tech and defense"
+  - "Find opportunities in the intersection of AI and defense tech"
+
+# Your theses and predictions — the system tracks these
+# When the world validates or kills one, you get alerted
+theses:
+  - id: "thesis-001"
+    stated: "2026-03-28"
+    thesis: "Open source AI models will match proprietary ones within 12 months"
+    status: "active"        # active | validated | killed
+    keywords: ["open source AI", "Llama", "Mistral", "GPT", "benchmark", "MMLU"]
+
+  - id: "thesis-002"
+    stated: "2026-03-28"
+    thesis: "India will become a top-3 defense exporter by 2030"
+    status: "active"
+    keywords: ["India defense export", "BrahMos", "HAL", "arms deal", "defense manufacturing"]
+
+  - id: "thesis-003"
+    stated: "2026-03-28"
+    thesis: "AI agents will replace most SaaS products within 3 years"
+    status: "active"
+    keywords: ["AI agent", "autonomous agent", "SaaS disruption", "AI startup"]
+
+# Threat vectors — things that could hurt what you're building
+threats:
+  - "Gemini API pricing changes or free tier removal"
+  - "GitHub Actions usage limits tightening"
+  - "Regulatory crackdown on AI web scraping"
+  - "Major competitor launching similar product"
+
+# What does a market crash mean to YOU specifically?
+# What does a war mean to YOU specifically?
+# The system uses these for personalized impact assessment.
+context_notes: |
+  I'm a student/early-career builder with no significant investments.
+  A market crash affects me through job market tightening, not portfolio losses.
+  India-Pakistan tensions affect me personally — I have family in India.
+  AI regulation affects what I can build and how.
+  Defense tech developments are both an interest area and a potential career path.

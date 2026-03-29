@@ -1,0 +1,208 @@
+sources:
+  # -- INDIA DEFENSE --
+  - name: "DRDO News"
+    type: scraper
+    url: "https://www.drdo.gov.in/whats-new"
+    category: india_defense
+    bias_source: "editorial"
+    bias_rating: "center"
+
+  - name: "Indian Defence Research Wing"
+    type: rss
+    url: "https://idrw.org/feed/"
+    category: india_defense
+    bias_source: "editorial"
+    bias_rating: "center-right"
+
+  - name: "The Print - Defence"
+    type: rss
+    url: "https://theprint.in/category/defence/feed/"
+    category: india_defense
+    bias_source: "editorial"
+    bias_rating: "center"
+
+  - name: "NDTV - India"
+    type: rss
+    url: "https://www.ndtv.com/rss/india"
+    category: india_defense
+    bias_source: "mbfc"
+    bias_rating: "center-left"
+
+  - name: "Hindustan Times - Defence"
+    type: rss
+    url: "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml"
+    category: india_defense
+    bias_source: "mbfc"
+    bias_rating: "center"
+
+  # -- GLOBAL DEFENSE --
+  - name: "Defense One"
+    type: rss
+    url: "https://www.defenseone.com/rss/all/"
+    category: global_defense
+    bias_source: "mbfc"
+    bias_rating: "center"
+
+  - name: "Breaking Defense"
+    type: rss
+    url: "https://breakingdefense.com/feed/"
+    category: global_defense
+    bias_source: "editorial"
+    bias_rating: "center"
+
+  - name: "The War Zone"
+    type: rss
+    url: "https://twz.com/feed"
+    category: global_defense
+    bias_source: "editorial"
+    bias_rating: "center"
+
+  - name: "Naval News"
+    type: rss
+    url: "https://www.navalnews.com/feed/"
+    category: global_defense
+    bias_source: "editorial"
+    bias_rating: "center"
+
+  # Reuters RSS was killed in June 2020 — removed.
+
+  - name: "Al Jazeera"
+    type: rss
+    url: "https://www.aljazeera.com/xml/rss/all.xml"
+    category: global_defense
+    bias_source: "mbfc"
+    bias_rating: "center-left"
+
+  - name: "BBC News - World"
+    type: rss
+    url: "https://feeds.bbci.co.uk/news/world/rss.xml"
+    category: global_defense
+    bias_source: "mbfc"
+    bias_rating: "center"
+
+  # AP News via RSSHub is unreliable (third-party dependency) — removed.
+
+  - name: "South China Morning Post"
+    type: rss
+    url: "https://www.scmp.com/rss/91/feed"
+    category: global_defense
+    bias_source: "mbfc"
+    bias_rating: "center"
+
+  # -- AI/ML --
+  - name: "arXiv CS.AI"
+    type: rss
+    url: "https://rss.arxiv.org/rss/cs.AI"
+    category: ai_ml
+    bias_source: "neutral"
+    bias_rating: "neutral"
+
+  - name: "MIT Tech Review - AI"
+    type: rss
+    url: "https://www.technologyreview.com/feed/"
+    category: ai_ml
+    bias_source: "mbfc"
+    bias_rating: "center-left"
+
+  - name: "The Verge - AI"
+    type: rss
+    url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"
+    category: ai_ml
+    bias_source: "mbfc"
+    bias_rating: "center-left"
+
+  - name: "Wired"
+    type: rss
+    url: "https://www.wired.com/feed/rss"
+    category: ai_ml
+    bias_source: "mbfc"
+    bias_rating: "center-left"
+
+  - name: "Ars Technica"
+    type: rss
+    url: "https://feeds.arstechnica.com/arstechnica/index"
+    category: ai_ml
+    bias_source: "mbfc"
+    bias_rating: "center-left"
+
+  # -- US TECH --
+  - name: "TechCrunch"
+    type: rss
+    url: "https://techcrunch.com/feed/"
+    category: us_tech
+    bias_source: "mbfc"
+    bias_rating: "center-left"
+
+  - name: "Hacker News (Top)"
+    type: rss
+    url: "https://hnrss.org/best?points=100"
+    category: us_tech
+    bias_source: "neutral"
+    bias_rating: "center"
+
+  - name: "The Register"
+    type: rss
+    url: "https://www.theregister.com/headlines.atom"
+    category: us_tech
+    bias_source: "editorial"
+    bias_rating: "center"
+
+  # -- INDIA ECONOMY & POLICY --
+  - name: "Livemint"
+    type: rss
+    url: "https://www.livemint.com/rss/economy"
+    category: india_policy
+    bias_source: "editorial"
+    bias_rating: "center-right"
+
+  - name: "Economic Times"
+    type: rss
+    url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms"
+    category: india_policy
+    bias_source: "editorial"
+    bias_rating: "center-right"
+
+  - name: "Business Standard"
+    type: rss
+    url: "https://www.business-standard.com/rss/economy-policy-102.rss"
+    category: india_policy
+    bias_source: "editorial"
+    bias_rating: "center-right"
+
+  # -- SUPPLEMENTARY APIS --
+  - name: "GDELT"
+    type: gdelt
+    category: discovery
+
+  - name: "The Guardian"
+    type: guardian_api
+    category: discovery
+
+  # -- REDDIT --
+  - name: "r/CredibleDefense"
+    type: rss
+    url: "https://www.reddit.com/r/CredibleDefense/top/.rss?t=day"
+    category: global_defense
+    bias_source: "neutral"
+    bias_rating: "center"
+
+  - name: "r/IndianDefense"
+    type: rss
+    url: "https://www.reddit.com/r/IndianDefense/top/.rss?t=day"
+    category: india_defense
+    bias_source: "neutral"
+    bias_rating: "center"
+
+  - name: "r/MachineLearning"
+    type: rss
+    url: "https://www.reddit.com/r/MachineLearning/top/.rss?t=day"
+    category: ai_ml
+    bias_source: "neutral"
+    bias_rating: "center"
+
+  - name: "r/geopolitics"
+    type: rss
+    url: "https://www.reddit.com/r/geopolitics/top/.rss?t=day"
+    category: global_defense
+    bias_source: "neutral"
+    bias_rating: "center"
