@@ -156,7 +156,7 @@ def build_email_html(articles: list[dict], slot: str, site_url: str = "", brief:
     {rows}
     <tr>
       <td style="padding:20px; text-align:center; background:#f9fafb;">
-        <a href="{site_url}" style="display:inline-block; padding:10px 24px; background:#111827; color:white; text-decoration:none; border-radius:6px; font-size:14px; font-weight:600;">
+        <a href="https://divyansh699754.github.io/News-Terminal/" style="display:inline-block; padding:10px 24px; background:#111827; color:white; text-decoration:none; border-radius:6px; font-size:14px; font-weight:600;">
           View Full Briefing &rarr;
         </a>
       </td>
