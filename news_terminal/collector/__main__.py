@@ -63,10 +63,12 @@ def main():
     except Exception as e:
         log.error("Guardian collection failed: %s", e)
 
-    try:
-        all_articles.extend(collect_gdelt())
-    except Exception as e:
-        log.error("GDELT collection failed: %s", e)
+    # GDELT skipped — always returns 429 from GitHub Actions IPs, wastes 3+ minutes
+    # Uncomment if GDELT rate limiting improves:
+    # try:
+    #     all_articles.extend(collect_gdelt())
+    # except Exception as e:
+    #     log.error("GDELT collection failed: %s", e)
 
     try:
         all_articles.extend(collect_drdo())
@@ -82,9 +84,9 @@ def main():
 
     log.info("Total raw articles collected: %d", len(all_articles))
 
-    # Text extraction — capped at 100 articles to stay within time budget (#4)
+    # Text extraction — capped at 50 and 0.5s delay to save time in CI
     if not args.skip_extraction:
-        enrich_articles(all_articles, delay=1.0, max_extract=100)
+        enrich_articles(all_articles, delay=0.5, max_extract=50)
 
     # Save raw output
     DATA_DIR.mkdir(parents=True, exist_ok=True)

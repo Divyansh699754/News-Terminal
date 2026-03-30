@@ -69,8 +69,19 @@ def main():
         a.setdefault("impact", a.get("priority", "medium").lower())
         a.setdefault("weapon_category", "")
 
-    log.info("Pass 1: %d already summarized (search), %d need processing (RSS)",
-             len(has_summary), len(needs_summary))
+    # Cap RSS processing at 200 to fit within 35-min workflow timeout
+    # (~200 articles × 3s = ~10min for Cerebras)
+    MAX_CEREBRAS = 200
+    if len(needs_summary) > MAX_CEREBRAS:
+        # Sort by text length (longer = more valuable to summarize)
+        needs_summary.sort(key=lambda a: len(a.get("text", "")), reverse=True)
+        skipped_rss = needs_summary[MAX_CEREBRAS:]
+        needs_summary = needs_summary[:MAX_CEREBRAS]
+    else:
+        skipped_rss = []
+
+    log.info("Pass 1: %d search (skip), %d RSS to process, %d RSS skipped (cap %d)",
+             len(has_summary), len(needs_summary), len(skipped_rss), MAX_CEREBRAS)
 
     # ── Pass 1: Summarize with Cerebras (primary) or Gemini (fallback) ──
     processed = list(has_summary)
@@ -124,6 +135,18 @@ def main():
                 "briefing_slot": args.slot,
             })
 
+        processed.append(article)
+
+    # Add skipped RSS articles with fallback data
+    for article in skipped_rss:
+        article.update({
+            "summary": article.get("text", "")[:200],
+            "relevance_score": 5,
+            "priority": "MEDIUM",
+            "novelty": "new",
+            "processed_at": datetime.now(timezone.utc).isoformat(),
+            "briefing_slot": args.slot,
+        })
         processed.append(article)
 
     # ── Filter by relevance ──

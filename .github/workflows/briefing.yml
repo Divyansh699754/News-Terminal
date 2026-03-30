@@ -16,7 +16,7 @@ permissions:
 jobs:
   briefing:
     runs-on: ubuntu-latest
-    timeout-minutes: 25      # Bumped from 20 — text extraction can be slow (#4)
+    timeout-minutes: 35      # Cerebras processes ~200 articles at ~3s each
 
     steps:
       - uses: actions/checkout@v4
