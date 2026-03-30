@@ -73,6 +73,13 @@ def main():
     except Exception as e:
         log.error("DRDO scraper failed: %s", e)
 
+    try:
+        from news_terminal.collector.edgar import collect_edgar
+        edgar_articles = collect_edgar()
+        all_articles.extend(edgar_articles)
+    except Exception as e:
+        log.error("SEC EDGAR collection failed: %s", e)
+
     log.info("Total raw articles collected: %d", len(all_articles))
 
     # Text extraction — capped at 100 articles to stay within time budget (#4)

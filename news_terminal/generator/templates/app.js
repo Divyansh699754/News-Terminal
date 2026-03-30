@@ -150,11 +150,14 @@
   function renderMeTab() {
     var html = '';
 
-    // Decision Brief
+    // ── Split screen: Brief (left) + Scoreboard (right) ──
+    html += '<div class="me-split">';
+
+    // LEFT: Decision Brief
+    html += '<div class="me-brief">';
     if (briefData) {
       var b = briefData;
       var threatColor = {green: "#16a34a", yellow: "#ca8a04", red: "#dc2626"}[b.threat_level] || "#6b7280";
-      html += '<div class="me-brief">';
       var genLabel = b.generated_by === "local" ? "LOCAL ANALYSIS" : "AI BRIEF";
       html += '<div class="me-brief-header"><span class="me-label">DECISION BRIEF</span>';
       html += '<span class="me-gen-badge">' + genLabel + '</span>';
@@ -165,7 +168,6 @@
         html += '<div class="me-threat-detail">' + esc(b.threat_summary) + '</div>';
       }
 
-      // Three Things
       if (b.three_things && b.three_things.length) {
         html += '<div class="me-three">';
         for (var i = 0; i < b.three_things.length; i++) {
@@ -181,9 +183,8 @@
         html += '</div>';
       }
 
-      // Thesis Updates
       if (b.thesis_updates && b.thesis_updates.length) {
-        html += '<div class="me-thesis-updates"><h3>Thesis Updates</h3>';
+        html += '<div class="me-thesis-updates"><h3>Thesis Updates From Today</h3>';
         for (var j = 0; j < b.thesis_updates.length; j++) {
           var u = b.thesis_updates[j];
           var statusColor = {strengthened: "#16a34a", weakened: "#ca8a04", validated: "#2563eb", killed: "#dc2626"}[u.status] || "#6b7280";
@@ -195,15 +196,61 @@
         }
         html += '</div>';
       }
-
-      html += '</div>';
     } else {
-      html += '<div class="me-brief"><div class="me-brief-header"><span class="me-label">DECISION BRIEF</span></div>';
-      html += '<h2 class="me-headline">No brief yet — run with Gemini API key to generate</h2>';
-      html += '<p style="color:var(--text-muted);margin-top:8px">The brief is generated when articles match your profile in <code>config/profile.yaml</code></p></div>';
+      html += '<div class="me-brief-header"><span class="me-label">DECISION BRIEF</span></div>';
+      html += '<h2 class="me-headline">No brief yet</h2>';
+      html += '<p style="color:var(--text-muted);margin-top:8px">Run the pipeline to generate your personal brief</p>';
     }
+    html += '</div>';
 
-    // Cluster Alerts
+    // RIGHT: Prediction Scoreboard
+    html += '<div class="me-scoreboard">';
+    html += '<div class="me-brief-header"><span class="me-label">PREDICTION SCOREBOARD</span></div>';
+    if (scoreboardData && scoreboardData.length) {
+      for (var k = 0; k < scoreboardData.length; k++) {
+        var s = scoreboardData[k];
+        var total = (s.evidence_for || 0) + (s.evidence_against || 0);
+        var forPct = total > 0 ? Math.round(((s.evidence_for || 0) / total) * 100) : 50;
+        var againstPct = 100 - forPct;
+        var statusColor = {active: "var(--text-muted)", validated: "#2563eb", killed: "#dc2626"}[s.status] || "var(--text-muted)";
+
+        html += '<div class="me-sb-card">';
+        html += '<div class="me-sb-status"><span class="me-thesis-badge" style="border:1px solid ' + statusColor + ';color:' + statusColor + '">' + esc(s.status || "active").toUpperCase() + '</span>';
+        html += '<span class="me-sb-id">' + esc(s.thesis_id || "") + '</span></div>';
+        html += '<div class="me-sb-thesis">' + esc(s.thesis || "") + '</div>';
+
+        // Evidence bar
+        html += '<div class="me-sb-bar-wrap">';
+        html += '<div class="me-sb-bar">';
+        html += '<div class="me-sb-bar-for" style="width:' + forPct + '%"></div>';
+        html += '<div class="me-sb-bar-against" style="width:' + againstPct + '%"></div>';
+        html += '</div>';
+        html += '<div class="me-sb-bar-labels">';
+        html += '<span class="me-count-for">' + (s.evidence_for || 0) + ' supporting</span>';
+        html += '<span class="me-count-against">' + (s.evidence_against || 0) + ' contradicting</span>';
+        html += '</div></div>';
+
+        // Total + latest
+        html += '<div class="me-sb-meta">';
+        html += '<span>' + total + ' evidence entries</span>';
+        if (s.latest_evidence && s.latest_evidence.length) {
+          var latest = s.latest_evidence[0];
+          html += '<a href="' + esc(latest.url || "#") + '" target="_blank" rel="noopener" class="me-sb-latest">Latest: ' + esc(latest.title || "").substring(0, 60) + (latest.title && latest.title.length > 60 ? "..." : "") + '</a>';
+        }
+        html += '</div>';
+        html += '</div>';
+      }
+    } else {
+      html += '<div class="me-sb-empty">';
+      html += '<p>No predictions tracked yet.</p>';
+      html += '<p style="font-size:12px;color:var(--text-muted)">Add theses to <code>config/profile.yaml</code> — the system tracks them against real-world events.</p>';
+      html += '</div>';
+    }
+    html += '</div>';
+
+    html += '</div>'; // close me-split
+
+    // Cluster Alerts (full width below split)
     if (clusterAlerts && clusterAlerts.length) {
       html += '<div class="me-cluster-alerts">';
       for (var ca = 0; ca < clusterAlerts.length; ca++) {
@@ -223,30 +270,17 @@
       html += '</div>';
     }
 
-    // Thesis Scoreboard
-    if (scoreboardData && scoreboardData.length) {
-      html += '<div class="me-scoreboard"><h3>Your Prediction Scoreboard</h3>';
-      for (var k = 0; k < scoreboardData.length; k++) {
-        var s = scoreboardData[k];
-        html += '<div class="me-thesis-row">';
-        html += '<div class="me-thesis-text">' + esc(s.thesis || "") + '</div>';
-        html += '<div class="me-thesis-counts">';
-        html += '<span class="me-count-for">+' + (s.evidence_for || 0) + ' for</span>';
-        html += '<span class="me-count-against">-' + (s.evidence_against || 0) + ' against</span>';
-        html += '<span class="me-thesis-badge">' + esc(s.status || "active") + '</span>';
-        html += '</div></div>';
-      }
-      html += '</div>';
-    }
-
     // Personal Articles (sorted by personal_score)
     var personal = allArticles.filter(function(a) { return (a.personal_score || 0) >= 3; });
     personal.sort(function(a, b) { return (b.personal_score || 0) - (a.personal_score || 0); });
 
     if (personal.length) {
       html += '<h3 class="me-section-title">Your Signals (' + personal.length + ' articles matched your profile)</h3>';
-      html += '<div class="article-grid">';
-      html += personal.slice(0, 20).map(renderCard).join("");
+      html += '<div class="me-signals-grid">';
+      html += personal.slice(0, 24).map(renderCard).join("");
+      if (personal.length > 24) {
+        html += '<button class="load-more" onclick="document.querySelector(\'.me-signals-grid\').innerHTML += allArticles.filter(function(a){return (a.personal_score||0)>=3}).sort(function(a,b){return (b.personal_score||0)-(a.personal_score||0)}).slice(24,48).map(renderCard).join(\'\');this.remove();">Load more (' + (personal.length - 24) + ' remaining)</button>';
+      }
       html += '</div>';
     }
 
@@ -279,7 +313,8 @@
     // ME tab: special rendering
     if (activeCategory === "me" && !searchQuery) {
       hero.innerHTML = "";
-      container.innerHTML = renderMeTab();
+      // ME tab content is sections, not card grid — use a wrapper that overrides parent grid
+      container.innerHTML = '<div class="me-container">' + renderMeTab() + '</div>';
       empty.style.display = "none";
       // Update ME tab count
       var meCount = allArticles.filter(function(a) { return (a.personal_score || 0) >= 3; }).length;

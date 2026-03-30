@@ -1,0 +1,122 @@
+name: News Terminal Daily Briefing
+
+on:
+  schedule:
+    - cron: '0 11 * * *'   # 6 AM EST (morning)
+    - cron: '0 23 * * *'   # 6 PM EST (evening)
+  workflow_dispatch:
+
+concurrency:
+  group: briefing
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25      # Bumped from 20 — text extraction can be slow (#4)
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Cache sentence-transformers model  # avoid ~80MB download each run
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface/hub
+          key: hf-all-MiniLM-L6-v2
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore state from data branch
+        run: |
+          git fetch origin data --depth=1 || echo "No data branch yet — starting fresh"
+          mkdir -p data
+          if git rev-parse origin/data >/dev/null 2>&1; then
+            git checkout origin/data -- state.json 2>/dev/null && mv state.json data/state.json || echo '{}' > data/state.json
+          else
+            echo '{}' > data/state.json
+          fi
+
+      - name: Determine briefing slot
+        id: slot
+        run: |
+          HOUR=$(date -u +%H)
+          if [ "$HOUR" -lt 15 ]; then
+            echo "slot=morning" >> $GITHUB_OUTPUT
+          else
+            echo "slot=evening" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Validate sources
+        run: python -m news_terminal.collector --slot ${{ steps.slot.outputs.slot }} --validate-sources
+        continue-on-error: true
+
+      - name: Run Collector (Gemini Search + RSS)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_KEY_1: ${{ secrets.GEMINI_KEY_1 }}
+          GEMINI_KEY_2: ${{ secrets.GEMINI_KEY_2 }}
+          GEMINI_KEY_3: ${{ secrets.GEMINI_KEY_3 }}
+          GUARDIAN_API_KEY: ${{ secrets.GUARDIAN_API_KEY }}
+        run: python -m news_terminal.collector --slot ${{ steps.slot.outputs.slot }}
+
+      - name: Run Deduplicator
+        run: python -m news_terminal.dedup --slot ${{ steps.slot.outputs.slot }}
+
+      - name: Run Processor (Cerebras primary + Gemini fallback)
+        env:
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_KEY_1: ${{ secrets.GEMINI_KEY_1 }}
+          GEMINI_KEY_2: ${{ secrets.GEMINI_KEY_2 }}
+          GEMINI_KEY_3: ${{ secrets.GEMINI_KEY_3 }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m news_terminal.processor --slot ${{ steps.slot.outputs.slot }}
+
+      - name: Generate Site
+        run: python -m news_terminal.generator --slot ${{ steps.slot.outputs.slot }}
+
+      - name: Clean old archives
+        run: python -m news_terminal.generator --cleanup-archive
+
+      - name: Deploy to GitHub Pages   # (#1) keep_files preserves archive between deploys
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          keep_files: true
+
+      - name: Send Email Digest
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: python -m news_terminal.email_sender --slot ${{ steps.slot.outputs.slot }}
+
+      - name: Persist state to data branch
+        if: always()
+        run: |
+          git config user.name "News Terminal Bot"
+          git config user.email "bot@newsterminal"
+          cp data/state.json /tmp/state.json 2>/dev/null || echo '{}' > /tmp/state.json
+          git stash --include-untracked || true
+          git checkout --orphan data_push
+          git rm -rf . 2>/dev/null || true
+          cp /tmp/state.json state.json
+          git add state.json
+          git commit -m "State: ${{ steps.slot.outputs.slot }} $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "No state changes"
+          git push origin data_push:data --force || echo "Failed to push state"
+
+      - name: Notify on failure
+        if: failure()
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: python -m news_terminal.email_sender --alert "Pipeline failed at $(date -u)" || true

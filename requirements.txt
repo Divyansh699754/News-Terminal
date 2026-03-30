@@ -12,6 +12,7 @@ sentence-transformers>=3.0
 
 # -- Processing --
 google-genai>=1.0
+cerebras-cloud-sdk>=1.0
 tenacity>=8.2
 
 # -- Generation --

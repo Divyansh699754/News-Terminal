@@ -502,6 +502,23 @@ body {
 .load-more:hover { background: var(--surface); color: var(--text); border-color: var(--text-muted); }
 
 /* ── ME Tab ── */
+.me-container {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+}
+
+.me-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+@media (max-width: 900px) {
+  .me-split { grid-template-columns: 1fr; }
+}
+
 .me-brief {
   background: var(--surface);
   border-radius: var(--radius);
@@ -619,18 +636,26 @@ body {
 }
 [data-theme="dark"] .me-thing-pivot { background: #0F2A1A; }
 
-.me-thesis-updates, .me-scoreboard {
+.me-thesis-updates {
   margin-top: 20px;
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
-.me-thesis-updates h3, .me-scoreboard h3 {
+.me-thesis-updates h3 {
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
   margin-bottom: 10px;
+}
+
+.me-scoreboard {
+  background: var(--surface);
+  border-radius: var(--radius);
+  clip-path: url(#sq);
+  padding: 24px;
+  box-shadow: var(--shadow);
 }
 
 .me-thesis-update {
@@ -654,31 +679,75 @@ body {
 .me-thesis-id { color: var(--text-muted); font-weight: 600; }
 .me-thesis-evidence { color: var(--text-secondary); }
 
-.me-thesis-row {
-  padding: 10px 0;
+.me-sb-card {
+  padding: 14px 0;
   border-bottom: 1px solid var(--border);
 }
-.me-thesis-text {
+.me-sb-card:last-child { border-bottom: none; }
+
+.me-sb-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.me-sb-id { font-size: 11px; color: var(--text-muted); }
+
+.me-sb-thesis {
   font-size: 14px;
   font-weight: 600;
   color: var(--text);
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.me-sb-bar-wrap { margin-bottom: 8px; }
+.me-sb-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
   margin-bottom: 4px;
 }
-.me-thesis-counts {
+.me-sb-bar-for { background: #16a34a; min-width: 2px; }
+.me-sb-bar-against { background: #dc2626; min-width: 2px; }
+.me-sb-bar-labels {
   display: flex;
-  gap: 10px;
-  font-size: 12px;
+  justify-content: space-between;
+  font-size: 11px;
 }
+
 .me-count-for { color: #16a34a; font-weight: 600; }
 .me-count-against { color: #dc2626; font-weight: 600; }
+
+.me-sb-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.me-sb-latest {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 11px;
+}
+.me-sb-latest:hover { text-decoration: underline; color: var(--text); }
+
+.me-sb-empty {
+  padding: 20px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
 .me-thesis-badge {
   font-size: 10px;
-  padding: 1px 8px;
+  padding: 2px 8px;
   border-radius: 8px;
-  background: var(--bg);
-  color: var(--text-muted);
-  font-weight: 600;
+  background: transparent;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .me-cluster-alerts { margin-bottom: 16px; }
@@ -720,6 +789,12 @@ body {
   margin: 24px 0 12px;
   padding-bottom: 8px;
   border-bottom: 2px solid var(--border);
+}
+
+.me-signals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
 }
 
 /* ── States ── */
