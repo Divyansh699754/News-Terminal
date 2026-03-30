@@ -1,250 +1,202 @@
 {
   "theses": {
-    "thesis-003": {
+    "thesis-002": {
       "evidence_for": [
         {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "LPU Unleashed: How Groq is Rewriting AI Inference - Baytech Consulting",
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJQjMW6FdsjOM-c1ikw8LT-yIHbGy-29tx2IjGH3iJBVDeRfpUVt3NyQH-uhbPUJtzb_ey-cfwTwMJis2romFUA5t60n8PUh8f3XZfZKAAMw5RfVPUUArpLhdUiANoxH2-u3y3-Wt_EePGMkDBm-MxzAg7bqWiufrY2qV1S0H_ihPVlfKJVCxXoKkQ",
-          "source": "Baytech Consulting"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "Tech Company News",
-          "url": "https://techcompanynews.com/",
-          "source": "Tech Company News"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "A Research Roadmap: How AI and Satellites Will Drive Transparency in 2026",
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFokBthSp3r96YiKP-76-IBJa4pbJbIYbSXATW0MHqAW1wvjOCqaJNrFGftlspZ-wvEJY2a_DD4ihr35TvVjSANWhYXjkC3mwwWsrG06jowmYfEHM4GttvKAXVCJj06y8AnVrZWbtZFLWB6ffA7RZMUGqyFbouFhQ1CZZaGcGWV8cEwPA-ErZFOHLpck5cd6e-SEtVGyAbzOGQtVK1E5knH3Mq5hNc5dNrXD4=",
-          "source": "Global Fishing Watch"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "Mila and Mozilla join forces to open the future of AI to all",
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVxQZBm2auY4kc4tu0y5SQ_4Oq3FpugEsCNkmsClHuQOUXkpK9nBPWB6J9VR_yAocwgqDsxD6uy5ITatO9Uz0DrcLsvLB6PskBUg8eC5uOuLSplDo1R9-9oCsjlTlDw5Xh7WJTmfT4VzbJQDCHLir47YYWO4WDGG9Hs8KzDGAU2diC4iCUkT2Xwx8HwBaBHpojtJI=",
-          "source": "Mila"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "Amid uproar, UP government cancels  ₹25,000 crore pact with AI startup",
-          "url": "https://www.hindustantimes.com/india-news/amid-uproar-up-government-cancels-rs-25-000-crore-pact-with-ai-startup-101774660246870.html",
-          "source": "Hindustan Times - Defence"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "Meet the Tech Reporters Using AI to Help Write and Edit Their Stories",
-          "url": "https://www.wired.com/story/tech-reporters-using-ai-write-edit-stories/",
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "A School District Tried to Help Train Waymos to Stop for School Buses. It Didn’t Work",
+          "url": "https://www.wired.com/story/a-school-district-tried-to-help-train-waymos-to-stop-for-school-buses-it-didnt-work/",
           "source": "Wired"
         },
         {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "Show HN: I put an AI agent on a $7/month VPS with IRC as its transport layer",
-          "url": "https://georgelarson.me/writing/2026-03-23-nullclaw-doorman/",
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "The Deceptively Tricky Art of Designing a Steering Wheel",
+          "url": "https://www.wired.com/story/the-deceptively-tricky-art-of-designing-a-steering-wheel/",
+          "source": "Wired"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Anthropic Supply-Chain-Risk Designation Halted by Judge",
+          "url": "https://www.wired.com/story/anthropic-supply-chain-risk-designation-injunction/",
+          "source": "Wired"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Causality optional? Testing the \"indefinite causal order\" superposition",
+          "url": "https://arstechnica.com/science/2026/03/getting-formal-about-quantum-mechanics-lack-of-causality/",
+          "source": "Ars Technica"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "How new fishing tech can reduce bycatch of turtles and other creatures",
+          "url": "https://arstechnica.com/science/2026/03/how-new-fishing-tech-can-reduce-bycatch-of-turtles-and-other-creatures/",
+          "source": "Ars Technica"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Judge irate as defendant joins by Zoom while driving—then lies about it",
+          "url": "https://arstechnica.com/tech-policy/2026/03/judge-irate-as-defendant-joins-by-zoom-while-driving-then-lies-about-it/",
+          "source": "Ars Technica"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Rivian and VW Group complete winter testing of new zonal architecture",
+          "url": "https://arstechnica.com/cars/2026/03/rivian-and-vw-group-complete-winter-testing-of-new-zonal-architecture/",
+          "source": "Ars Technica"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Mark Zuckerberg texted Elon Musk to offer help with DOGE",
+          "url": "https://techcrunch.com/2026/03/28/mark-zuckerberg-texted-elon-musk-to-offer-help-with-doge/",
+          "source": "TechCrunch"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "The Cognitive Dark Forest",
+          "url": "https://ryelang.org/blog/posts/cognitive-dark-forest/",
           "source": "Hacker News (Top)"
         },
         {
-          "date": "2026-03-29T22:54:05.735327+00:00",
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Anthropic struggling with Chinese competition, its own safety obsession",
+          "url": "https://go.theregister.com/feed/www.theregister.com/2026/03/28/miss_anthropic_not_those_who/",
+          "source": "The Register"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Centre to borrow  ₹8.2 trillion in FY27 first half; no impact of Iran war — yet",
+          "url": "https://www.livemint.com/economy/india-centre-union-government-borrowings-fiscal-2027-unchanged-west-asia-iran-war-bonds-11774625681001.html",
+          "source": "Livemint"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Govt restores full tax refund benefits to support exporters",
+          "url": "https://www.livemint.com/economy/rodtep-tax-refund-scheme-future-indian-export-market-uncertainty-11774279220620.html",
+          "source": "Livemint"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "India’s cotton acreage loses ground to rice, maize amid low productivity",
+          "url": "https://www.livemint.com/economy/indias-cotton-acreage-loses-ground-to-rice-maize-amid-low-productivity-farmers-exports-11773922589504.html",
+          "source": "Livemint"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Vedanta's Jaypee asset bid later reversed: Chief",
+          "url": "https://economictimes.indiatimes.com/industry/indl-goods/svs/metals-mining/anil-agarwal-says-vedanta-got-written-win-for-jaypee-group-asset-bid-later-reversed/articleshow/129878501.cms",
+          "source": "Economic Times"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Heavy snowfall shuts roads for vehicles in J&amp;K",
+          "url": "https://economictimes.indiatimes.com/news/india/jk-weather-heavy-snowfall-shuts-bandipora-gurez-road-for-vehicles/articleshow/129875733.cms",
+          "source": "Economic Times"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Sons force mother out of house after father’s death",
+          "url": "https://economictimes.indiatimes.com/wealth/legal/will/sons-force-mother-out-of-family-home-after-fathers-death-she-loses-eviction-case-but-secures-rs-25000-monthly-maintenance/articleshow/129874358.cms",
+          "source": "Economic Times"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "West Asia conflict: Two India-bound LPG tankers clear Strait of Hormuz",
+          "url": "https://www.business-standard.com/economy/news/west-asia-conflict-two-india-bound-lpg-tankers-clear-strait-of-hormuz-126032900437_1.html",
+          "source": "Business Standard"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Centre plans to borrow ₹8.20 trillion from market in first half of FY27",
+          "url": "https://www.business-standard.com/economy/news/centre-plans-to-borrow-8-20-trillion-from-market-in-first-half-of-fy27-126032701139_1.html",
+          "source": "Business Standard"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Be afraid Atmanirbhar Ayatollahs, be very afraid.",
+          "url": "https://www.reddit.com/r/IndianDefense/comments/1s6r6t6/be_afraid_atmanirbhar_ayatollahs_be_very_afraid/",
+          "source": "r/IndianDefense"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "[D] Prior work using pixel shift to improve VAE accuracy?",
+          "url": "https://www.reddit.com/r/MachineLearning/comments/1s787p0/d_prior_work_using_pixel_shift_to_improve_vae/",
+          "source": "r/MachineLearning"
+        }
+      ],
+      "evidence_against": [],
+      "first_seen": "2026-03-30T00:57:01.617799+00:00"
+    },
+    "thesis-001": {
+      "evidence_for": [
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Further human + AI + proof assistant work on Knuth's \"Claude Cycles\" problem",
+          "url": "https://twitter.com/BoWang87/status/2037648937453232504",
+          "source": "Hacker News (Top)"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Why OpenAI killed Sora",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/902368/openai-sora-dead-ai-video-generation-competition",
+          "source": "The Verge - AI"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Apple will reportedly allow other AI chatbots to plug into Siri",
+          "url": "https://www.theverge.com/tech/902048/apple-siri-ai-chatbot-update-ios-27",
+          "source": "The Verge - AI"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "I Asked ChatGPT 500 Questions. Here Are the Ads I Saw Most Often",
+          "url": "https://www.wired.com/story/i-asked-chatgpt-500-questions-here-are-the-ads-i-saw-most-often/",
+          "source": "Wired"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "ChatGPT won't let you type until Cloudflare reads your React state",
+          "url": "https://www.buchodi.com/chatgpt-wont-let-you-type-until-cloudflare-reads-your-react-state-i-decrypted-the-program-that-does-it/",
+          "source": "Hacker News (Top)"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "[R] I built a benchmark that catches LLMs breaking physics laws",
+          "url": "https://www.reddit.com/r/MachineLearning/comments/1s6keh0/r_i_built_a_benchmark_that_catches_llms_breaking/",
+          "source": "r/MachineLearning"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "[P] Implemented TurboQuant in Python",
+          "url": "https://www.reddit.com/r/MachineLearning/comments/1s73sbf/p_implemented_turboquant_in_python/",
+          "source": "r/MachineLearning"
+        }
+      ],
+      "evidence_against": [],
+      "first_seen": "2026-03-30T00:57:01.617799+00:00"
+    },
+    "thesis-003": {
+      "evidence_for": [
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
           "title": "Linear moves sideways to agentic AI as CEO declares issue tracking dead",
           "url": "https://go.theregister.com/feed/www.theregister.com/2026/03/26/linear_agent/",
           "source": "The Register"
         },
         {
-          "date": "2026-03-29T22:54:05.735327+00:00",
+          "date": "2026-03-30T00:57:01.617799+00:00",
+          "title": "Meet the Tech Reporters Using AI to Help Write and Edit Their Stories",
+          "url": "https://www.wired.com/story/tech-reporters-using-ai-write-edit-stories/",
+          "source": "Wired"
+        },
+        {
+          "date": "2026-03-30T00:57:01.617799+00:00",
           "title": "Oracle: AI agents can reason, decide and act - liability question remains",
           "url": "https://go.theregister.com/feed/www.theregister.com/2026/03/25/oracles_apps_and_agents_push/",
           "source": "The Register"
         }
       ],
       "evidence_against": [],
-      "first_seen": "2026-03-29T22:54:05.735327+00:00"
-    },
-    "thesis-001": {
-      "evidence_for": [
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "India Bond Yield Hits 16-Month High on War Fears, Inflation Bets",
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDJEftCwuhb7v4zrZEjq24TOnTy1SYEnhRM1ArdqbF-tbEfIkBOwMaqJOJLkeIbEM0CLnhLMPKTZO-u-9fDWSjdItl1ipl3oGCjLGuh5VuaRjsu2rZsmnSrXqQ6SfKkakazt4XL1kQHZB9go1PLl_AF_1TDY3l3uhuz0MYst_dUxe7uqF0S7O8e6gQptVHsziJFrU_p1uxo8WVRaaEPhd5XXTVeJ9NnmnLk3Dh39Z-qVf0SQygkNDg6UN0p9xySePLnicA",
-          "source": "Whalesbook"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "NATO countries boost defense budgets amid rising security pressures - AzerNews",
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG6Wa94q9I7HDaLLKRpDSloS4PHNiXC26GtdT62MI_BbpdC_OlUURnE7XOgAUq64khvN_9zTIh6LV5AURjq7HKcHiLSbFUOPR1d4ZA75Lc4eyiaUz_IU2u-USQQcP-d3UT7TJzh4A==",
-          "source": "AzerNews"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "India's 10-Year Bond Yield Rises To 6.93% Amid Inflation Concerns",
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHI-xG9SUrF0nPqJTg8P7oghhIvt-NIzWUt0Vz5uf5CUJ2fnbndLWJoCYLen77OWlyWkec8yEvtRjXJ5MfbIbOWQGSOKJarJBaN9Mm4P4ZdRptRMvv-MrLqbUBa-_ALGGfjPSKENNyayq4XzU6xX9iLazTxAvRIANyFB1O_j1BmkNAmzmL__m_1OhKaoh2gQtYxGtqKmUmcGL6QtFB3-q4c4BQ8lU5cRtTg",
-          "source": "KNN"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "Bond yields hit 6.94% amid fears of inflation, monetary tightening",
-          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFiTL4yn40ZEyH_th3MyBDgntgmm8OoztDsQNEMN4qDwv37FoSoH1QIVE8937VmIOPSZVQ_aAAKdr6-NCl7B_1PTk3UVx3Li5WoBjiTmQQ8lQKqHNAoAq0jbf4Zc-YIQwpjGgKUZNSsbRKKhM1Xw7af_sBvrDj_aATJWhV78uB8xjkNEbbdBvoku9RqKf8qg6UcmTb_j_vko1ayWWyUlc2Ao5fe__MVlHvhL1MymtX1LqX11QivNL8=",
-          "source": "The Indian Express"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "China’s Own Seawolf-class Submarine: The Type 095",
-          "url": "https://www.navalnews.com/naval-news/2026/03/chinas-own-seawolf-class-submarine-the-type-095/",
-          "source": "Naval News"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "Why OpenAI killed Sora",
-          "url": "https://www.theverge.com/ai-artificial-intelligence/902368/openai-sora-dead-ai-video-generation-competition",
-          "source": "The Verge - AI"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "Apple will reportedly allow other AI chatbots to plug into Siri",
-          "url": "https://www.theverge.com/tech/902048/apple-siri-ai-chatbot-update-ios-27",
-          "source": "The Verge - AI"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "I Asked ChatGPT 500 Questions. Here Are the Ads I Saw Most Often",
-          "url": "https://www.wired.com/story/i-asked-chatgpt-500-questions-here-are-the-ads-i-saw-most-often/",
-          "source": "Wired"
-        },
-        {
-          "date": "2026-03-29T22:54:05.735327+00:00",
-          "title": "[P] TurboQuant for weights: near‑optimal 4‑bit LLM quantization with lossless 8‑bit residual – 3.2× ",
-          "url": "https://www.reddit.com/r/MachineLearning/comments/1s634wk/p_turboquant_for_weights_nearoptimal_4bit_llm/",
-          "source": "r/MachineLearning"
-        }
-      ],
-      "evidence_against": [],
-      "first_seen": "2026-03-29T22:54:05.735327+00:00"
-    },
-    "thesis-002": {
-      "evidence_for": [
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "RQ-180 Secret Stealth Drone Appears To Have Made An Emergency Landing At A Greek Air Base (Updated)",
-          "url": "https://www.twz.com/air/secret-rq-180-stealth-drone-appears-to-have-made-an-emergency-landing-at-a-greek-air-base",
-          "source": "The War Zone"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Thales’ Expeditionary PathMaster Concept Integrates Existing Tools to Enhance Navies’ Hybrid MCM Cap",
-          "url": "https://www.navalnews.com/naval-news/2026/03/thales-expeditionary-pathmaster-concept-integrates-existing-tools-to-enhance-navies-hybrid-mcm-capacity/",
-          "source": "Naval News"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Whale swims for freedom after big German rescue effort on Baltic coast",
-          "url": "https://www.bbc.com/news/articles/c9vlmxwk2jmo?at_medium=RSS&at_campaign=rss",
-          "source": "BBC News - World"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "From jammed broadcasts to a blocked website: BBC Russian's 80 years of defiance",
-          "url": "https://www.bbc.com/news/articles/c05dlnd3635o?at_medium=RSS&at_campaign=rss",
-          "source": "BBC News - World"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Asean countries warned against exploiting US-China tensions for short-term gain",
-          "url": "https://www.scmp.com/news/china/diplomacy/article/3348238/asean-countries-warned-against-exploiting-us-china-tensions-short-term-gain?utm_source=rss_feed",
-          "source": "South China Morning Post"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Bank of America to pay US$72.5 million to settle Epstein sex-trafficking lawsuit",
-          "url": "https://www.scmp.com/news/world/united-states-canada/article/3348228/bank-america-pay-us725-million-settle-epstein-sex-trafficking-lawsuit?utm_source=rss_feed",
-          "source": "South China Morning Post"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Chinese man rescued from ‘zip tie escape challenge’ after delivery man alerts police",
-          "url": "https://www.scmp.com/news/people-culture/trending-china/article/3347955/chinese-man-rescued-zip-tie-escape-challenge-after-delivery-man-alerts-police?utm_source=rss_feed",
-          "source": "South China Morning Post"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Judge sides with Anthropic to temporarily block the Pentagon&#8217;s ban",
-          "url": "https://www.theverge.com/ai-artificial-intelligence/902149/anthropic-dod-pentagon-lawsuit-supply-chain-risk-injunction",
-          "source": "The Verge - AI"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Anthropic Supply-Chain-Risk Designation Halted by Judge",
-          "url": "https://www.wired.com/story/anthropic-supply-chain-risk-designation-injunction/",
-          "source": "Wired"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Anduril Wants to Own the Future of War Tech. Mishaps, Delays, and Challenges Abound",
-          "url": "https://www.wired.com/story/andurils-real-war-is-with-itself/",
-          "source": "Wired"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Causality optional? Testing the \"indefinite causal order\" superposition",
-          "url": "https://arstechnica.com/science/2026/03/getting-formal-about-quantum-mechanics-lack-of-causality/",
-          "source": "Ars Technica"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "How new fishing tech can reduce bycatch of turtles and other creatures",
-          "url": "https://arstechnica.com/science/2026/03/how-new-fishing-tech-can-reduce-bycatch-of-turtles-and-other-creatures/",
-          "source": "Ars Technica"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Windows 95 let installers trash its files then fixed the mess behind their backs",
-          "url": "https://go.theregister.com/feed/www.theregister.com/2026/03/25/windows_95_installers_chen/",
-          "source": "The Register"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Centre to borrow  ₹8.2 trillion in FY27 first half; no impact of Iran war — yet",
-          "url": "https://www.livemint.com/economy/india-centre-union-government-borrowings-fiscal-2027-unchanged-west-asia-iran-war-bonds-11774625681001.html",
-          "source": "Livemint"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "India to auction 19 critical mineral blocks amid supply concerns",
-          "url": "https://www.livemint.com/economy/india-critical-strategic-minerals-auction-clean-energy-defence-security-11774181178228.html",
-          "source": "Livemint"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "India’s cotton acreage loses ground to rice, maize amid low productivity",
-          "url": "https://www.livemint.com/economy/indias-cotton-acreage-loses-ground-to-rice-maize-amid-low-productivity-farmers-exports-11773922589504.html",
-          "source": "Livemint"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Pilots body seeks DGCA halt on West Asia flights",
-          "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/pilots-association-urges-dgca-to-suspend-flights-in-high-risk-conflict-zones-in-west-asia-mandate-insurance-coverage/articleshow/129858840.cms",
-          "source": "Economic Times"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Centre plans to borrow ₹8.20 trillion from market in first half of FY27",
-          "url": "https://www.business-standard.com/economy/news/centre-plans-to-borrow-8-20-trillion-from-market-in-first-half-of-fy27-126032701139_1.html",
-          "source": "Business Standard"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "Can WTO MC14 deliver a consensus WTO reform agenda this time?",
-          "url": "https://www.business-standard.com/economy/analysis/can-wto-mc14-deliver-a-consensus-wto-reform-agenda-this-time-126032600588_1.html",
-          "source": "Business Standard"
-        },
-        {
-          "date": "2026-03-29T23:26:19.608437+00:00",
-          "title": "DGTR initiates probe against imports of Chinese, Indonesian paperboards",
-          "url": "https://www.business-standard.com/economy/news/dgtr-initiates-probe-against-imports-of-chinese-indonesian-paperboards-126032600523_1.html",
-          "source": "Business Standard"
-        }
-      ],
-      "evidence_against": [],
-      "first_seen": "2026-03-29T22:54:05.735327+00:00"
+      "first_seen": "2026-03-30T00:57:01.617799+00:00"
     }
   }
 }

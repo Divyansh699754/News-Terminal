@@ -7,6 +7,7 @@
   var briefData = null;
   var scoreboardData = null;
   var clusterAlerts = [];
+  var profileData = null;
   var activeCategory = "me";  // Start on ME tab
   var activePriority = "all";
   var searchQuery = "";
@@ -40,6 +41,7 @@
           briefData = d.brief || null;
           scoreboardData = d.thesis_scoreboard || null;
           clusterAlerts = d.cluster_alerts || [];
+          profileData = d.profile || null;
           return;
         }
       } catch (e) {}
@@ -147,8 +149,60 @@
   }
 
   // ── ME Tab Rendering ──
+  function _findArticleBySignal(signal) {
+    if (!signal) return null;
+    var sigWords = signal.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ').filter(function(w) { return w.length > 3; });
+    if (sigWords.length < 2) return null;
+
+    var best = null;
+    var bestScore = 0;
+    for (var i = 0; i < allArticles.length; i++) {
+      var a = allArticles[i];
+      var target = ((a.title || '') + ' ' + (a.summary || '')).toLowerCase();
+      var hits = 0;
+      for (var w = 0; w < sigWords.length; w++) {
+        if (target.indexOf(sigWords[w]) !== -1) hits++;
+      }
+      var score = hits / sigWords.length;
+      if (score > bestScore && score >= 0.4) {
+        bestScore = score;
+        best = a;
+      }
+    }
+    return best;
+  }
+
   function renderMeTab() {
     var html = '';
+
+    // ── Profile Header ──
+    if (profileData) {
+      html += '<div class="me-profile">';
+      html += '<div class="me-profile-top">';
+      html += '<div class="me-profile-identity">';
+      html += '<h2 class="me-profile-name">' + esc(profileData.name || "Your") + '\'s Intelligence Dashboard</h2>';
+      html += '<span class="me-profile-role">' + esc(profileData.role || "") + '</span>';
+      html += '</div>';
+      var personal = allArticles.filter(function(a) { return (a.personal_score || 0) >= 3; });
+      html += '<div class="me-profile-stats">';
+      html += '<div class="me-stat"><span class="me-stat-num">' + personal.length + '</span><span class="me-stat-label">Signals</span></div>';
+      html += '<div class="me-stat"><span class="me-stat-num">' + (profileData.theses || []).length + '</span><span class="me-stat-label">Theses</span></div>';
+      html += '<div class="me-stat"><span class="me-stat-num">' + (clusterAlerts || []).length + '</span><span class="me-stat-label">Alerts</span></div>';
+      html += '</div></div>';
+
+      // Sectors + Goals as pills
+      html += '<div class="me-profile-tags">';
+      (profileData.sectors || []).forEach(function(s) { html += '<span class="me-pill me-pill-sector">' + esc(s) + '</span>'; });
+      html += '</div>';
+
+      // Building
+      if (profileData.building && profileData.building.length) {
+        html += '<div class="me-profile-building">';
+        (profileData.building || []).forEach(function(b) { html += '<span class="me-building-tag">Building: ' + esc(b) + '</span>'; });
+        html += '</div>';
+      }
+      html += '</div>';
+    }
 
     // ── Split screen: Brief (left) + Scoreboard (right) ──
     html += '<div class="me-split">';
@@ -172,10 +226,12 @@
         html += '<div class="me-three">';
         for (var i = 0; i < b.three_things.length; i++) {
           var t = b.three_things[i];
+          var matchedArticle = _findArticleBySignal(t.signal);
+          var signalLink = matchedArticle ? '<a href="' + esc(matchedArticle.url) + '" target="_blank" rel="noopener" class="me-thing-link">' + esc(t.signal || "") + ' &nearr;</a>' : esc(t.signal || "");
           html += '<div class="me-thing">';
           html += '<div class="me-thing-num">' + (i + 1) + '</div>';
           html += '<div class="me-thing-content">';
-          html += '<div class="me-thing-signal">' + esc(t.signal || "") + '</div>';
+          html += '<div class="me-thing-signal">' + signalLink + '</div>';
           html += '<div class="me-thing-why">' + esc(t.why_it_matters_to_you || "") + '</div>';
           html += '<div class="me-thing-pivot"><strong>Pivot:</strong> ' + esc(t.pivot || "") + '</div>';
           html += '</div></div>';
@@ -188,10 +244,14 @@
         for (var j = 0; j < b.thesis_updates.length; j++) {
           var u = b.thesis_updates[j];
           var statusColor = {strengthened: "#16a34a", weakened: "#ca8a04", validated: "#2563eb", killed: "#dc2626"}[u.status] || "#6b7280";
+          var evidenceArticle = _findArticleBySignal(u.evidence);
+          var evidenceHtml = evidenceArticle
+            ? '<a href="' + esc(evidenceArticle.url) + '" target="_blank" rel="noopener" class="me-evidence-link">' + esc(u.evidence || "") + ' &nearr;</a>'
+            : '<span class="me-thesis-evidence">' + esc(u.evidence || "") + '</span>';
           html += '<div class="me-thesis-update">';
           html += '<span class="me-thesis-status" style="background:' + statusColor + '">' + esc(u.status || "") + '</span>';
           html += '<span class="me-thesis-id">' + esc(u.thesis_id || "") + '</span>';
-          html += '<span class="me-thesis-evidence">' + esc(u.evidence || "") + '</span>';
+          html += evidenceHtml;
           html += '</div>';
         }
         html += '</div>';
@@ -348,6 +408,18 @@
       var c = el.getAttribute("data-count-for");
       el.textContent = c === "all" ? allArticles.length : allArticles.filter(function (a) { return a.category === c; }).length;
     });
+
+    // Update priority dropdown with counts
+    var priSel = document.getElementById("priority-filter");
+    if (priSel) {
+      var priCounts = {};
+      allArticles.forEach(function(a) { var p = a.priority || "MEDIUM"; priCounts[p] = (priCounts[p] || 0) + 1; });
+      priSel.options[0].text = "All Priorities (" + allArticles.length + ")";
+      priSel.options[1].text = "Critical (" + (priCounts["CRITICAL"] || 0) + ")";
+      priSel.options[2].text = "High (" + (priCounts["HIGH"] || 0) + ")";
+      priSel.options[3].text = "Medium (" + (priCounts["MEDIUM"] || 0) + ")";
+      priSel.options[4].text = "Low (" + (priCounts["LOW"] || 0) + ")";
+    }
   }
 
   function renderPage(articles, container) {
@@ -356,6 +428,126 @@
     container.innerHTML = vis.map(renderCard).join("");
     if (rem > 0) container.innerHTML += '<button class="load-more" onclick="loadMore()">Load more (' + rem + ' remaining)</button>';
   }
+
+  // ── Newspaper Mode ──
+  var newspaperMode = false;
+
+  function renderNewspaper() {
+    var priOrder = {CRITICAL: 0, HIGH: 1, MEDIUM: 2, LOW: 3};
+    var personal = allArticles.filter(function(a) { return (a.personal_score || 0) >= 3; });
+    // Sort: priority first, then personal score
+    personal.sort(function(a, b) {
+      var pa = priOrder[a.priority || "MEDIUM"] || 2;
+      var pb = priOrder[b.priority || "MEDIUM"] || 2;
+      if (pa !== pb) return pa - pb;
+      return (b.personal_score || 0) - (a.personal_score || 0);
+    });
+    var top20 = personal.slice(0, 20);
+    if (!top20.length) top20 = allArticles.slice(0, 20);
+
+    var today = new Date();
+    var dateStr = today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+    var html = '<div class="np">';
+
+    // Masthead
+    html += '<div class="np-masthead">';
+    html += '<div class="np-rule-double"></div>';
+    html += '<div class="np-masthead-inner">';
+    html += '<span class="np-edition">Personal Edition</span>';
+    html += '<h1 class="np-title">NEWS TERMINAL</h1>';
+    html += '<span class="np-date">' + dateStr + '</span>';
+    html += '</div>';
+    html += '<div class="np-rule-double"></div>';
+    html += '</div>';
+
+    // Decision brief box
+    if (briefData) {
+      html += '<div class="np-brief-box">';
+      html += '<div class="np-brief-label">INTELLIGENCE BRIEF</div>';
+      html += '<div class="np-brief-headline">' + esc(briefData.headline || "") + '</div>';
+      if (briefData.three_things) {
+        for (var b = 0; b < briefData.three_things.length; b++) {
+          html += '<div class="np-brief-item"><strong>' + (b+1) + '.</strong> ' + esc(briefData.three_things[b].signal || "") + '</div>';
+        }
+      }
+      html += '</div>';
+    }
+
+    function npPriBadge(p) {
+      var colors = {CRITICAL:"#B91C1C",HIGH:"#C2410C",MEDIUM:"#525252",LOW:"#78716C"};
+      return '<span class="np-pri-badge" style="background:' + (colors[p] || colors.MEDIUM) + '">' + (p || "MEDIUM") + '</span>';
+    }
+
+    // Lead story (#1)
+    if (top20.length > 0) {
+      var lead = top20[0];
+      html += '<div class="np-lead">';
+      html += npPriBadge(lead.priority);
+      html += '<h2 class="np-lead-headline">' + esc(lead.title) + '</h2>';
+      html += '<div class="np-lead-meta">' + esc(lead.source_name) + ' &mdash; ' + timeAgo(lead.published) + '</div>';
+      html += '<div class="np-lead-body">' + esc(lead.summary || "") + '</div>';
+      html += '</div>';
+      html += '<div class="np-rule"></div>';
+    }
+
+    // Secondary stories (#2-3) — two columns
+    if (top20.length >= 3) {
+      html += '<div class="np-two-col">';
+      for (var s = 1; s <= 2; s++) {
+        var a = top20[s];
+        html += '<div class="np-col-story">';
+        html += npPriBadge(a.priority);
+        html += '<h3 class="np-col-headline">' + esc(a.title) + '</h3>';
+        html += '<div class="np-col-meta">' + esc(a.source_name) + '</div>';
+        html += '<div class="np-col-body">' + esc(a.summary || "") + '</div>';
+        html += '</div>';
+      }
+      html += '</div>';
+      html += '<div class="np-rule"></div>';
+    }
+
+    // Remaining stories (#4-20) — three columns
+    var remaining = top20.slice(3);
+    if (remaining.length) {
+      html += '<div class="np-three-col">';
+      for (var r = 0; r < remaining.length; r++) {
+        var ar = remaining[r];
+        html += '<div class="np-compact-story">';
+        html += npPriBadge(ar.priority);
+        html += '<h4 class="np-compact-headline"><a href="' + esc(ar.url) + '" target="_blank" rel="noopener">' + esc(ar.title) + '</a></h4>';
+        html += '<div class="np-compact-meta">' + esc(ar.source_name) + ' &middot; ' + timeAgo(ar.published) + '</div>';
+        html += '<div class="np-compact-summary">' + esc((ar.summary || "").substring(0, 120)) + (ar.summary && ar.summary.length > 120 ? "..." : "") + '</div>';
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+
+    // Footer
+    html += '<div class="np-rule-double" style="margin-top:24px"></div>';
+    html += '<div class="np-footer">Generated by News Terminal for Divyansh &mdash; ' + top20.length + ' stories from ' + allArticles.length + ' articles analyzed</div>';
+
+    html += '</div>';
+    return html;
+  }
+
+  window.toggleNewspaper = function () {
+    newspaperMode = !newspaperMode;
+    var btn = document.getElementById("newspaper-btn");
+    var container = document.getElementById("articles");
+    var hero = document.getElementById("hero-section");
+    var empty = document.getElementById("empty-state");
+
+    if (newspaperMode) {
+      btn.classList.add("active");
+      hero.innerHTML = "";
+      empty.style.display = "none";
+      container.innerHTML = '<div class="me-container">' + renderNewspaper() + '</div>';
+    } else {
+      btn.classList.remove("active");
+      render();
+    }
+  };
 
   // ── Globals ──
   window.toggleFraming = function (id) { var e = document.getElementById(id); if (e) e.classList.toggle("open"); };
@@ -373,7 +565,9 @@
     document.getElementById("tabs").addEventListener("click", function (e) {
       var b = e.target.closest(".tab"); if (!b) return;
       document.querySelectorAll(".tab").forEach(function (t) { t.classList.remove("active"); });
-      b.classList.add("active"); activeCategory = b.getAttribute("data-category"); activeCluster = null; render();
+      b.classList.add("active"); activeCategory = b.getAttribute("data-category"); activeCluster = null;
+      newspaperMode = false; var nbtn = document.getElementById("newspaper-btn"); if (nbtn) nbtn.classList.remove("active");
+      render();
     });
     var st;
     document.getElementById("search").addEventListener("input", function (e) {

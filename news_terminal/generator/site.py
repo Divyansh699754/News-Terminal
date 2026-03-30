@@ -15,6 +15,27 @@ log = get_logger("generator.site")
 TEMPLATE_DIR = Path(__file__).parent / "templates"
 
 
+def _load_profile_for_site() -> dict | None:
+    """Load profile.yaml for the ME tab display."""
+    try:
+        from news_terminal.personal.profile import load_profile
+        p = load_profile()
+        if not p:
+            return None
+        return {
+            "name": p.get("identity", {}).get("name", ""),
+            "role": p.get("identity", {}).get("role", ""),
+            "building": [b.get("name", "") + " — " + b.get("description", "") for b in p.get("building", [])],
+            "sectors": p.get("sectors", []),
+            "goals": p.get("goals", []),
+            "theses": [{"id": t["id"], "thesis": t["thesis"], "status": t.get("status", "active")}
+                       for t in p.get("theses", [])],
+            "threats": p.get("threats", []),
+        }
+    except Exception:
+        return None
+
+
 def generate_site(articles: list[dict], slot: str, settings: dict = None, sources_scanned: int = 0,
                    brief: dict = None, scoreboard: list = None, cluster_alerts: list = None) -> None:
     """Generate the static site from processed articles."""
@@ -71,6 +92,7 @@ def generate_site(articles: list[dict], slot: str, settings: dict = None, source
             "brief": brief,
             "cluster_alerts": cluster_alerts or [],
             "thesis_scoreboard": scoreboard,
+            "profile": _load_profile_for_site(),
             "articles": filtered,
         }, f, indent=2, ensure_ascii=False)
 
